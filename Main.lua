@@ -745,3 +745,70 @@
 
 -- local x =text.new{content = "bye"}
 -- print(x.size)
+
+-- co = coroutine.create(
+--     function(i)
+--         print(i)
+--     end
+-- )
+-- coroutine.resume(co,1)
+-- print(coroutine.status(co))
+
+-- print("-------------------")
+
+-- co2 = coroutine.wrap(
+--     function(i)
+--         print(i)
+--     end
+-- )
+-- co2(10)
+-- print(coroutine.status(co2))
+
+-- print("-------------------")
+
+-- co3 = coroutine.create(
+--     function()
+--         for i = 1,10 do
+--             print(i)
+--             if i == 3 then
+--                 print(coroutine.status(co3))
+--                 print(coroutine.running())
+--             end
+--             coroutine.yield()
+--         end
+--     end
+-- )
+-- coroutine.resume(co3)
+-- coroutine.resume(co3)
+-- coroutine.resume(co3)
+
+-- print(coroutine.status(co3))
+-- print(coroutine.running())
+
+-- print("-------------------")
+
+
+-- function foo(a)
+--     print("foo Function output",a)
+--     return coroutine.yield(2*a)
+-- end
+
+-- co = coroutine.create(function(a,b)
+--     print("First coroutine runput",a,b)
+--     local r = foo(a+1)
+    
+--     print("Second coroutine runput",r)
+--     local r,s = coroutine.yield(a+b,a-b)
+
+--     print("Third coroutine runput",r,s)
+--     return b,"End coroutine"
+-- end)
+
+-- print("main", coroutine.resume(co, 1, 10)) 
+-- print("-----------")
+-- print("main", coroutine.resume(co, "r")) 
+-- print("-----------")
+-- print("main", coroutine.resume(co, "x", "y")) 
+-- print("-----------")
+-- print("main", coroutine.resume(co, "x", "y")) 
+-- print("-----------")
