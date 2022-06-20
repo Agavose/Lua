@@ -812,3 +812,331 @@
 -- print("-----------")
 -- print("main", coroutine.resume(co, "x", "y")) 
 -- print("-----------")
+
+
+
+-- local newProductor
+
+-- function Productor()
+--     local i = 0
+--     while true do
+--         i = i + 1
+--         Sedn(i)
+--     end
+-- end
+
+-- function Consumer()
+--     while true do
+--         local i = Receive()
+--         print(i)
+--     end
+-- end
+
+-- function Receive()
+--     local status, value = coroutine.resume(newProductor)
+--     return value
+-- end
+
+-- function Send(x)
+--     coroutine.yield(x)
+-- end
+
+-- newProductor = coroutine.create(Productor)
+-- Consumer()
+
+
+
+-- co_wrap = coroutine.wrap(function(i)
+--     print(i)    
+--     end
+-- )
+-- co_wrap("sdfsfsf")
+
+-- co = coroutine.create(function(a)
+--     local r = coroutine.yield(a+1)
+--     print("r"..r)
+-- end)
+-- status,r = coroutine.resume(co,1)
+-- print(coroutine.status(co))
+-- coroutine.resume(co,100)
+-- print(coroutine.status(co))
+
+-- co_yield = coroutine.create(
+--     function()
+--         coroutine.yield()
+--         coroutine.yield(1)
+--         return 2
+--     end
+-- )
+
+-- for i = 1 ,4 do
+--     print("No. "..i.." =",coroutine.resume(co_yield))
+-- end
+
+-- function yieldReturn(arg) return arg end
+
+-- co_yieldtest = coroutine.create(
+--     function()
+--         print("Status before running: "..coroutine.status(co_yieldtest))
+--         print("----------")
+--         coroutine.yield()
+--         coroutine.yield(1)
+--         coroutine.yield(print("Third transfer"))
+--         coroutine.yield("Fourth transfer")
+--         return 2
+--     end
+-- )
+
+-- print("Status before running: "..coroutine.status(co_yieldtest))
+-- print("----------")
+
+-- for i = 1,6 do
+--     print("No. "..i.."thread: ",coroutine.resume(co_yieldtest))
+--     print("Now status: "..coroutine.status(co_yieldtest))
+--     print("----------")
+-- end
+
+-- print();
+-- cor = coroutine.create(function(a)
+--     print("Value a = ",a)
+--     local b, c = coroutine.yield(a+1)
+--     print("Value b,c = ",b,c)
+--     return b * c
+-- end)
+-- print("First: ",coroutine.resume(cor,1))
+-- print("Second: ",coroutine.resume(cor,2,2))
+-- print("Third: ",coroutine.resume(cor))
+
+
+
+-- --以只读方式打开文件
+-- file = io.open("test.lua","r")
+
+-- --设置默认输入文件test.lua
+-- io.input(file)
+
+-- --输出文件第一行
+-- print(io.read())
+
+-- --关闭打开文件
+-- io.close(file)
+
+-- --以附加方式打开只读文件
+-- file = io.open("test.lua","a")
+
+-- --设置默认输出文件为test.lua
+-- io.output(file)
+
+-- --在文件最后一行加入lua注释
+-- io.write("-- test.lua tailmark")
+
+-- --关闭打开文件
+-- io.close(file)
+
+
+-- --以只读方式打开文件
+-- local file = io.open("test.lua","r")
+
+-- --输出文件第一行
+-- print(file:read())
+
+-- --关闭打开文件
+-- file:close()
+
+-- --以附加方式打开只读文件
+-- file = io.open("test.lua","a")
+
+
+-- --在文件最后一行加入lua注释
+-- file:write("-- test")
+
+-- --关闭打开文件
+-- file:close()
+
+
+-- --以只读方式打开文件
+-- file = io.open("test.lua","r")
+
+-- file:seek("end",-25)
+-- print(file:read("*a"))
+
+-- --关闭打开文件
+-- file:close()
+
+
+
+----Lua错误处理
+
+-- local function add(a,b)
+--     assert(type(a) == "number","a not a number")
+--     assert(type(b) == "number","b not a number")
+--     return a+b
+-- end
+-- add(10)
+
+-- pcall(function(i)print(i)end,33)
+-- pcall(function(i)print(i) error('error..')end,3)
+  
+
+-- xpcall(function(i) print(i) error('error..') end, function() print(debug.traceback()) end, 33)
+
+
+-- function myfunction()
+--     n = n/nil
+-- end
+
+-- function myerrorhandler( err )
+--     print( "ERROR:", err )
+-- end
+
+-- status = xpcall( myfunction,myerrorhandler )
+-- print( status)
+
+
+
+
+
+
+----Lua垃圾回收
+-- mytable = {"apple","orange","banana"}
+
+-- print(collectgarbage("count"))
+
+-- mytable = nil
+
+-- print(collectgarbage("count"))
+-- print(collectgarbage("collect"))
+-- print(collectgarbage("count"))
+
+
+
+
+
+
+
+----Lua面向对象
+-- Rectangle = {area = 0,length = 0,breadth = 0}
+
+-- function Rectangle:new(o,length,breadth)
+--     o = o or {}
+--     setmetatable(o,self)
+--     self.__index = self
+--     self.length = length or 0
+--     self.breadth = breadth or 0
+--     self.area = length*breadth
+--     return o
+-- end
+
+-- function Rectangle:printArea()
+--     print("area = ",self.area)
+-- end
+
+-- Rectangle:new(shape1,5,7)
+-- Rectangle:printArea()
+
+
+
+-- --元类
+-- Shape = {area = 0}
+-- --基础方法new
+-- function Shape:new(o,side)
+--     o = o or {}
+--     setmetatable(o,self)
+--     self.__index = self
+--     side = side or 0
+--     self.area = side^2
+--     return o 
+-- end
+-- --基础类方法printArea
+-- function Shape:printArea()
+--     print("area = ",self.area)
+-- end
+
+-- myshape = Shape:new(nil,10)
+-- myshape:printArea()
+
+
+-- --Lua继承
+-- --派生类方法new
+-- Square = Shape:new()
+-- function Square:new(o,side)
+--     o = o or Shape:new(o,side)
+--     setmetatable(o,self)
+--     self.__index = self
+--     return o
+-- end
+-- --派生类方法printArea
+-- function Square:printArea()
+--     print("Squarearea = ",self.area)
+-- end
+
+-- mysquare = Square:new(nil,15)
+-- mysquare:printArea()
+
+
+-- local RectAngele = { length, width, area}
+
+-- function RectAngele:new(len,wid)
+--     local o = {
+--         length = len or 0,
+--         width = wid or 0,
+--         area = len*wid
+--     }
+--     setmetatable(o,{__index = self})
+--     return o
+-- end
+-- function RectAngele:getInfo()
+--     return self.length,self.width,self.area
+-- end
+
+-- a = RectAngele:new(10,20)
+-- print(a:getInfo())
+-- b = RectAngele:new(10,10)
+-- print(b:getInfo())
+-- print(a:getInfo())
+
+
+Game = {name = 0,hard = 0,time = 0 }
+function Game:new(na,ha,ti,ma)
+    local sub =  {
+       name = na or 0,
+       hard = ha or 0,
+       time = ti or 0
+    }
+    setmetatable(sub,{__index = self})
+    return sub
+end
+
+function Game:getInfo()
+    return self.name,self.hard,self.time
+end
+
+moba = Game:new("MOBA",5,10)
+
+moba.masterpiece = {"LoL","Dota2"}
+
+function moba:showMasterpiece()
+    for k,v in pairs(self.masterpiece)do
+        print(v)
+    end
+end
+
+print(moba:getInfo())
+moba:showMasterpiece()
+
+
+lol = moba:new("league of legends",5.5,15)
+
+lol.model = {"Zed","Jinx","VN"}
+
+function lol:showModel()
+    for k,v in pairs(self.model) do
+        print(v)
+    end
+end
+print(lol:getInfo())
+lol:showModel()
+
+print(Game)
+print(getmetatable(moba))
+print(getmetatable(lol))
