@@ -1096,47 +1096,47 @@
 -- print(a:getInfo())
 
 
-Game = {name = 0,hard = 0,time = 0 }
-function Game:new(na,ha,ti,ma)
-    local sub =  {
-       name = na or 0,
-       hard = ha or 0,
-       time = ti or 0
-    }
-    setmetatable(sub,{__index = self})
-    return sub
-end
+-- Game = {name = 0,hard = 0,time = 0 }
+-- function Game:new(na,ha,ti,ma)
+--     local sub =  {
+--        name = na or 0,
+--        hard = ha or 0,
+--        time = ti or 0
+--     }
+--     setmetatable(sub,{__index = self})
+--     return sub
+-- end
 
-function Game:getInfo()
-    return self.name,self.hard,self.time
-end
+-- function Game:getInfo()
+--     return self.name,self.hard,self.time
+-- end
 
-moba = Game:new("MOBA",5,10)
+-- moba = Game:new("MOBA",5,10)
 
-moba.masterpiece = {"LoL","Dota2"}
+-- moba.masterpiece = {"LoL","Dota2"}
 
-function moba:showMasterpiece()
-    for k,v in pairs(self.masterpiece)do
-        print(v)
-    end
-end
+-- function moba:showMasterpiece()
+--     for k,v in pairs(self.masterpiece)do
+--         print(v)
+--     end
+-- end
 
-print(moba:getInfo())
-moba:showMasterpiece()
+-- print(moba:getInfo())
+-- moba:showMasterpiece()
 
 
-lol = moba:new("league of legends",5.5,15)
+-- lol = moba:new("league of legends",5.5,15)
 
-lol.model = {"Zed","Jinx","VN"}
+-- lol.model = {"Zed","Jinx","VN"}
 
-function lol:showModel()
-    for k,v in pairs(self.model) do
-        print(v)
-    end
-end
-print(lol:getInfo())
-lol:showModel()
+-- function lol:showModel()
+--     for k,v in pairs(self.model) do
+--         print(v)
+--     end
+-- end
+-- print(lol:getInfo())
+-- lol:showModel()
 
-print(Game)
-print(getmetatable(moba))
-print(getmetatable(lol))
+-- print(Game)
+-- print(getmetatable(moba))
+-- print(getmetatable(lol))
